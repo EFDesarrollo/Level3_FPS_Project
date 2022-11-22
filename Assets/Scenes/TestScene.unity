@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6055,7 +6055,7 @@ BoxCollider:
   m_GameObject: {fileID: 731129431}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -6126,14 +6126,14 @@ MonoBehaviour:
   AddBounceBullets: 1
   AddInpactForeceBullets: 1
   AddCameraShake: 1
-  CameraShakeForce: 0.05
+  CameraShakeForce: 0.03
   fireArmRange: 100
-  fireRate: 5
-  fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
+  fireRate: 3
+  fireSpreadVariance: {x: 0.01, y: 0.02, z: 0.01}
   ShootDelay: 0.5
   bulletDamage: 10
   bulletSpeed: 100
-  bounceDistance: 10
+  bounceDistance: 5
   inpactForce: 15
   fpsCamera: {fileID: 963194227}
   BulletSpawnPoint: {fileID: 1948755357}
@@ -6275,7 +6275,7 @@ MonoBehaviour:
   camShakeAcive: 1
   trauma: 0
   traumaMult: 16
-  traumaMag: 0.8
+  traumaMag: 1
   traumaRotMag: 17
   traumaDepthMag: 0.6
   traumaDecay: 1.3

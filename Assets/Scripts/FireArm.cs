@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FireArm : MonoBehaviour
 {
     [Header("Has functios")]
+    public bool CanShoot = true;
     public bool AddBulletSpread = true;
     public bool AddBulletTrail = true;
     public bool AddBounceBullets = true;
@@ -36,21 +37,30 @@ public class FireArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        // if Player's input && Fire rate allows
+        // then Shoot
+        if (CanShoot && Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
+            // Fire Rate Timer
             nextTimeToFire = Time.time + 1f/fireRate;
+            // Shoot Mechanic
             Shoot();
         }
     }
-
+    /// <summary>
+    /// Shoot Mechanic
+    /// </summary>
     private void Shoot()
     {
-        if (AddCameraShake) fpsCamera.GetComponent<CameraShake>().Trauma = CameraShakeForce;
+        // void ray that will contain RayCast's Values
+        RaycastHit hit;
+        // Particles play
         muzzleFlash.Play();
         bulletFlash.Play();
-        RaycastHit hit;
-        direction = GetDirection();
+        // Get s
+        direction = GetSpreadedDirection();
+        // If its allow Camera Shake movment hten apply trauma movment
+        if (AddCameraShake) fpsCamera.GetComponent<CameraShake>().Trauma = CameraShakeForce;
         if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, fireArmRange))
         {
             // Add bullet Trail Render
@@ -68,7 +78,7 @@ public class FireArm : MonoBehaviour
             }
         }
     }
-    private Vector3 GetDirection()
+    private Vector3 GetSpreadedDirection()
     {
         Vector3 direction = fpsCamera.transform.forward;
 
