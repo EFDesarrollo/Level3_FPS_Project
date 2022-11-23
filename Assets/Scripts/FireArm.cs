@@ -47,37 +47,7 @@ public class FireArm : MonoBehaviour
             Shoot();
         }
     }
-    /// <summary>
-    /// Shoot Mechanic
-    /// </summary>
-    private void Shoot()
-    {
-        // void ray that will contain RayCast's Values
-        RaycastHit hit;
-        // Particles play
-        muzzleFlash.Play();
-        bulletFlash.Play();
-        // Get s
-        direction = GetSpreadedDirection();
-        // If its allow Camera Shake movment hten apply trauma movment
-        if (AddCameraShake) fpsCamera.GetComponent<CameraShake>().Trauma = CameraShakeForce;
-        if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, fireArmRange))
-        {
-            // Add bullet Trail Render
-            if (AddBulletTrail)
-            {
-                TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
-                StartCoroutine(BulletManager(trail, hit.point, hit.normal, bounceDistance, true));
-            }
-            else
-            {
-                SetDamage(hit.transform.GetComponent<PlayerStats>(), hit.rigidbody, hit.normal);
-                
-                GameObject impactEffectOBJ = Instantiate(impactEffect, hit.point,Quaternion.LookRotation(hit.normal));
-
-            }
-        }
-    }
+    #region Methods
     private Vector3 GetSpreadedDirection()
     {
         Vector3 direction = fpsCamera.transform.forward;
@@ -95,22 +65,103 @@ public class FireArm : MonoBehaviour
 
         return direction;
     }
-    private void SetDamage(PlayerStats target, Rigidbody enemyRB, Vector3 normal)
+    private void SetDamage(PlayerStats target)
     {
-        //PlayerStats target = hit.transform.GetComponent<PlayerStats>();
         if (target != null)
         {
             target.TakeDamage(bulletDamage);
         }
+
+    }
+    private void SetPush(Rigidbody enemyRB, Vector3 normal)
+    {
         if (AddImpactForeceBullets && enemyRB != null)
             enemyRB.AddForce(-normal * impactForce);
     }
+    #endregion
+    #region Mechanic
+    /// <summary>
+    /// Shoot Mechanic
+    /// </summary>
+    private void Shoot()
+    {
+        // Local Vars
+        /// void ray that will contain RayCast's Values
+        RaycastHit hit;
+
+        // Particles play
+        Debug.Log("Play ShootParticles");
+        muzzleFlash.Play();
+        bulletFlash.Play();
+        Debug.Log("Add Camera Shake");
+        // If its allow Camera Shake movment hten apply trauma movment
+        if (AddCameraShake) fpsCamera.GetComponent<CameraShake>().Trauma = CameraShakeForce;
+
+        // 
+        //-----------------
+        // Ray cast direction Builder //
+        //-----------------
+        //
+        Debug.Log("Building ray");
+        direction = GetSpreadedDirection();
+        // 
+        //-----------------
+        // Ray cast detect Collision //
+        //-----------------
+        //
+        if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, fireArmRange))
+        {
+            Debug.Log("shoot collision detected");
+            // 
+            //-----------------
+            // check if we have to //
+            // use a trail render //
+            //-----------------
+            //
+            // Add bullet Trail Render
+            if (AddBulletTrail)
+            {
+                Debug.Log("use bullet");
+                TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
+                if (hit.transform.GetComponent<PlayerStats>() != null)
+                {
+                    Debug.Log("no bounce in player");
+                    StartCoroutine(BulletManager(trail, hit.point, hit.normal, 0, true));
+                }
+                else
+                {
+                    Debug.Log("bounce in any thing");
+                    StartCoroutine(BulletManager(trail, hit.point, hit.normal, bounceDistance, true));
+                }
+            }
+            else
+            {
+                // 
+                //-----------------
+                // impact effect Manager //
+                //-----------------
+                //
+                Debug.Log("No bollet trail use");
+                GameObject impactEffectOBJ = Instantiate(impactEffect, hit.point,Quaternion.LookRotation(hit.normal));
+
+            }
+            Debug.Log("Seting damage");
+            // set damage to enemy
+            SetDamage(hit.transform.GetComponent<PlayerStats>());
+            Debug.Log("Seting pushForce");
+            // add push force to enemy
+            SetPush(hit.rigidbody, hit.normal);
+        }
+    }
+    #endregion
+    #region controllers
     private IEnumerator BulletManager(TrailRenderer Trail, Vector3 HitPoint, Vector3 HitNormal, float BounceDistance, bool MadeImpact)
     {
         //
         //-----------------
         // trail/bullet movment //
         //-----------------
+        Debug.Log("Moving trail");
         // get and set startPosition to calculate movment in the future
         Vector3 startPosition = Trail.transform.position;
         // Calculate distace of spawn to hit point
@@ -133,6 +184,7 @@ public class FireArm : MonoBehaviour
         }
         // Make sure that arrive to evade bugs
         Trail.transform.position = HitPoint;
+        Debug.Log("Bullet Arrived");
         //
         //-----------------
         // Impact Manager //
@@ -143,6 +195,7 @@ public class FireArm : MonoBehaviour
         // Else just skip Impact logic and destroy the bullet
         if (MadeImpact)
         {
+            Debug.Log("MadeImpact");
             //
             //-----------------
             // Bounce Function //
@@ -150,6 +203,7 @@ public class FireArm : MonoBehaviour
             //
             // if we said that can Bounce and the Bounce distance of the trajectory does not reach the maximum
             ////// Then calculate a new Bounced direction vector3 and checks Ray collisions logics
+            Debug.Log("Bounce Function");
             if (AddBounceBullets && BounceDistance > 0)
             {
                 Vector3 bounceDirection = Vector3.Reflect(direction, HitNormal);
@@ -159,31 +213,40 @@ public class FireArm : MonoBehaviour
                 // ray ckecks //
                 //-----------------
                 //
+                Debug.Log("Ray Checks");
                 // Comprueba si la trayectoria de la bala chocará con un player
                 ////// entonces actualiza PlayerStats y Actualiza movimiento de la bala en BulletManager
                 // Comprueba si la trayectoria de la bala choca con algo
                 ///// Enviamos los datos de la trayectoria y restamos la BounceDistance
                 // comprueba si la trayectoria de la bala no choca con nada
                 ////// Enviamos a BulletManager una actualizacion con la trayectoria y especificamos que no hubo colisión
-                if (bounceHit.transform.GetComponent<PlayerStats>() != null)
-                {
-                    SetDamage(bounceHit.transform.GetComponent<PlayerStats>(), bounceHit.rigidbody, bounceHit.normal);
-                    yield return StartCoroutine(BulletManager(
-                        Trail,
-                        bounceHit.point,
-                        bounceHit.normal,
-                        0,
-                        true
-                        ));
-                }
                 //
                 //-----------------
                 // Submit new movement processed //
                 // Specifying with contact case//
                 //-----------------
                 //
-                else if (wasCollision)
+                if (wasCollision)
                 {
+                    Debug.Log("Was Collision");
+                    //
+                    //-----------------
+                    // if Collision was with player //
+                    //-----------------
+                    //
+                    if (bounceHit.transform.GetComponent<PlayerStats>())
+                    {
+                        Debug.Log("Player detected");
+                        SetDamage(bounceHit.transform.GetComponent<PlayerStats>());
+                        SetPush(bounceHit.rigidbody, bounceHit.normal);
+                        yield return StartCoroutine(BulletManager(
+                            Trail,
+                            bounceHit.point,
+                            bounceHit.normal,
+                            0,
+                            true
+                            ));
+                    }
                     yield return StartCoroutine(BulletManager(
                         Trail,
                         bounceHit.point,
@@ -200,7 +263,7 @@ public class FireArm : MonoBehaviour
                 //
                 else
                 {
-                    Debug.Log("hitpoint of bounce: " + HitPoint);
+                    Debug.Log("Wasn't Collision");
                     yield return StartCoroutine(BulletManager(
                         Trail,
                         HitPoint + bounceDirection * BounceDistance,
@@ -210,7 +273,13 @@ public class FireArm : MonoBehaviour
                     ));
                 }
             }
+            //
+            //-----------------
+            // Impact Effect Manager //
+            //-----------------
+            //
             // Instanciate impactEfect
+            Debug.Log("ImpactEffect");
             Instantiate(impactEffect, HitPoint, Quaternion.LookRotation(HitNormal));
         }
         //
@@ -219,10 +288,10 @@ public class FireArm : MonoBehaviour
         //-----------------
         //
         // Destroys bullet when its run ends
+        Debug.Log("Destroy Bullt");
         Destroy(Trail.gameObject, Trail.time);
     }
-    
-
+    #endregion
     //--------------------------- Draw
     private void OnDrawGizmos()
     {
