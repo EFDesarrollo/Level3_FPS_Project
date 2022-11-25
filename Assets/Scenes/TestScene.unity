@@ -21417,15 +21417,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b00d929a6cc3c4abfd61e7daf79772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
-  endurance: 100
-  maxEndurance: 100
-  speed: 5
-  maxSpeed: 5
-  size: 1
-  maxSize: 1.5
-  minSize: 0.5
+  CharacterStats:
+    Health: 100
+    MaxHealth: 100
+    RetryPoints: 3
+    MaxRetryPoints: 3
+    Endurance: 100
+    MaxEndurance: 100
+    Strength: 1
+    MaxStrength: 1
+    Size: 1
+    MaxSize: 2
+    MinSize: 0.5
+    Speed: 5
+    MaxSpeed: 8
+    JumpForce: 10
+    MaxJumpForce: 15
+    MinJumpForce: 5
+    WeakedState: 0
+    InmortalState: 0
+    SearchingState: 0
+    FallBackState: 0
 --- !u!136 &2145303669
 CapsuleCollider:
   m_ObjectHideFlags: 0
