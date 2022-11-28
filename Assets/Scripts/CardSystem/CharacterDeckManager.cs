@@ -6,20 +6,28 @@ public class CharacterDeckManager : MonoBehaviour
 {
     [SerializeField]
     private Deck deck;
+    public string gameMangerTag;
 
     private void Start()
     {
-        GetDeck();
+        Debug.Log("ManagerGettingDeck");
+        deck = GetDeck();
     }
 
     #region Methods
-    private void GetDeck()
+    public Deck GetDeck()
     {
-        deck = GameObject.Find("GameManager").GetComponent<GameManager>().Deck;
+        Debug.Log("CharacterDeckManager: GetDeck");
+        Debug.Log(GameObject.FindGameObjectsWithTag(gameMangerTag).Length);
+        Deck deck = GameObject.FindGameObjectsWithTag(gameMangerTag)[0].GetComponent<GameManager>().Deck;
+        if (deck == null)
+            deck = new Deck();
+        return deck;
     }
-    private void SetCharacterDeck(Deck newDeck)
+    public void SetCharacterDeck(Deck newDeck)
     {
-        GameObject.Find("GameManager").GetComponent<GameManager>().Deck = newDeck;
+        Debug.Log("CharacterDeckManager: SetingDeck");
+        GameObject.Find(gameMangerTag).GetComponent<GameManager>().Deck = newDeck;
     }
     #endregion
 }
