@@ -7,65 +7,76 @@ public class DeckMenu : MonoBehaviour
     public GameObject playerDeckContainer, systemCardsContainer;
     public GameObject cardUIPrefab;
     [SerializeField]
-    private Deck playerDeck, allCardsDeck;
-    private List<GameObject> DeckOBJs = new();
+    private Deck playerDeck, systemDeck;
+    private List<GameObject> cardsPrefabList = new();
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("DeckMenu: System deck reference");
-        allCardsDeck = GetComponent<Deck>();
         Debug.Log("DeckMenu: Player deck reference");
-        playerDeck = GetComponent<CharacterDeckManager>().GetDeck();
+        playerDeck = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameManager>().Deck;
         Debug.Log("DeckMenu: Instantiate system Deck");
-        instantiateSystemCard(allCardsDeck.GetCards());
+        InstantiateSystemCard(CardListSorting(systemDeck.GetCards()), systemCardsContainer.transform);
         //Debug.Log("DeckMenu: Instantiate Player Deck");
         //instantiatePlayerCard(playerDeck.GetCards());
     }
-
-    // Update is called once per frame
-    void Update()
+    public int SortFunction(Card a, Card b)
     {
+        if (a.Type < b.Type)
+            return -1;
+        if (a.Type > b.Type)
+            return 1;
+        return 0;
     }
-    public void instantiateSystemCard(List<Card> cards)
+    public List<Card> CardListSorting(List<Card> deck)
     {
+        deck.Sort(SortFunction);
+        return deck;
+    }public bool IsInPlayerDeck(Card a)
+    {
+        foreach (Card b in playerDeck.GetCards())
+        {
+            if (a == b) return true;
+        }
+        return false;
+    }
+    public void MovePlayerCard()
+    {
+        foreach(GameObject card in cardsPrefabList)
+        {
+            if (card.GetComponent<CardUI>().inDeck)
+            {
+                card.transform.parent = playerDeckContainer.transform;
+            }
+            else
+            {
+                card.transform.parent = systemCardsContainer.transform;
+            }
+        }
+    }
+    public void InstantiateSystemCard(List<Card> cards, Transform parent)
+    {
+        cardsPrefabList.ForEach(card => Destroy(card));
+        cardsPrefabList.Clear();
         Debug.Log("DeckMenu: Instantiating System Deck");
         if (cards.Count == 0)
             return;
         for (int i = 0; i < cards.Count; i++)
         {
-            GameObject cardsContent = Instantiate(cardUIPrefab, systemCardsContainer.transform);
-            cardsContent.GetComponent<CardUI>().setImage(cards[i].Image);
-            cardsContent.GetComponent<CardUI>().inDeck = false;
-            cardsContent.GetComponent<CardUI>().Card = cards[i];
-            DeckOBJs.Add(cardsContent);
+            GameObject prefab = Instantiate(cardUIPrefab, parent);
+            prefab.GetComponent<CardUI>().setImage(cards[i].Image);
+            prefab.GetComponent<CardUI>().inDeck = IsInPlayerDeck(cards[i]);
+            prefab.GetComponent<CardUI>().Card = cards[i];
+            cardsPrefabList.Add(prefab);
         }
+        MovePlayerCard();
     }
-    /*public void instantiatePlayerCard(List<Card> cards)
+    public void OnClickChangeAndUpdateList(GameObject Prefab)
     {
-        Debug.Log("DeckMenu: Instantiating Player Deck");
-        if (cards.Count == 0)
-            return;
-        for (int i = 0; i < cards.Count; i++)
-        {
-            GameObject cardsContent = Instantiate(cardUIPrefab, playerDeckContainer.transform);
-            cardsContent.GetComponent<CardUI>().setImage(cards[i].Image);
-            cardsContent.GetComponent<CardUI>().inDeck = true;
-            cardsContent.GetComponent<CardUI>().Card = cards[i];
-        }
-    }*/
-    public void UpdateList(GameObject card)
-    {
-        if (card.GetComponent<CardUI>().inDeck)
-        {
-            card.transform.parent = systemCardsContainer.transform;
-            playerDeck.QuitCard(card.GetComponent<CardUI>().Card);
-            Debug.Log(DeckOBJs[0].Equals(card));
-        }
+        if (Prefab.GetComponent<CardUI>().inDeck)
+            playerDeck.QuitCard(Prefab.GetComponent<CardUI>().Card);
         else
-        {
-            card.transform.parent = playerDeckContainer.transform;
-            playerDeck.AddCard(card.GetComponent<CardUI>().Card);
-            //instantiatePlayerCard(playerDeck.GetCards());
-        }
+            playerDeck.AddCard(Prefab.GetComponent<CardUI>().Card);
+        InstantiateSystemCard(CardListSorting(systemDeck.GetCards()), systemCardsContainer.transform);
     }
 }

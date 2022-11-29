@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Deck : MonoBehaviour
+public class Deck
 {
     public string Name = "Default";
     [SerializeField]

@@ -18,7 +18,7 @@ public class CharacterDeckManager : MonoBehaviour
     public Deck GetDeck()
     {
         Debug.Log("CharacterDeckManager: GetDeck");
-        Debug.Log(GameObject.FindGameObjectsWithTag(gameMangerTag).Length);
+        Debug.Log("Find: " + GameObject.FindGameObjectsWithTag(gameMangerTag).Length);
         Deck deck = GameObject.FindGameObjectsWithTag(gameMangerTag)[0].GetComponent<GameManager>().Deck;
         if (deck == null)
             deck = new Deck();
