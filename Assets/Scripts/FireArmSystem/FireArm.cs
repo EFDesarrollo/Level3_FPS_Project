@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,27 +14,30 @@ public class FireArm : MonoBehaviour
     public bool AddImpactForeceBullets = true;
     //public bool AddFireArmRecoil = true;
     public bool AddCameraShake = true;
-    [Header("Fire Arm Stats")]
-    public float CameraShakeForce = .05f;
-    public float fireArmRange = 100f;
-    public float fireRate = 15f; // shoot delay?
-    public Vector3 fireSpreadVariance = new Vector3(.1f,.1f,.1f);
-    public float ShootDelay = .5f; // fire rate?
-    [Header("Bullet Stats")]
-    public float bulletDamage = 10f;
-    public float bulletSpeed = 100f;
-    public float bounceDistance = 10f;
-    public float impactForce = 30f;
+    [Header("")]
+    public FireArmStats fireArmStats = new FireArmStats();
+
     [Header("References")]
     public Camera fpsCamera;
     public Transform BulletSpawnPoint;
     public ParticleSystem muzzleFlash;
     public ParticleSystem bulletFlash;
     public GameObject impactEffect;
-    public TrailRenderer BulletTrail;
+    public PoolObjects BulletTrailPool;
 
     private float nextTimeToFire;
     private Vector3 direction;
+    private List<Card> fireArmsCards;
+    [SerializeField]
+    private int currentFireArmCard;
+
+    private void Start()
+    {
+        fireArmsCards = GetComponent<CharacterDeckManager>().GetFireArmCards(true);
+        currentFireArmCard = 0;
+        GetComponent<HUD_Manager>().ChangeFireArmCard(fireArmsCards[currentFireArmCard]);
+        SetFireArmStats(fireArmsCards[currentFireArmCard].NewFireArmStats);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -42,10 +46,43 @@ public class FireArm : MonoBehaviour
         if (CanShoot && Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             // Fire Rate Timer
-            nextTimeToFire = Time.time + 1f/fireRate;
+            nextTimeToFire = Time.time + 1f / fireArmStats.FireRate;
             // Shoot Mechanic
-            Shoot();
+            if (fireArmStats.Ammo == 0)
+            {
+                Card temp = GetNewFireArmCard();
+                GetComponent<HUD_Manager>().ChangeFireArmCard(temp);
+                SetFireArmStats(temp.NewFireArmStats);
+            }
+            else
+            {
+                fireArmStats.Ammo--;
+                Shoot();
+            }
         }
+    }
+    private void SetFireArmStats(FireArmStats stats)
+    {
+        fireArmStats.CameraShakeForce = stats.CameraShakeForce;
+        fireArmStats.FireArmRange = stats.FireArmRange;
+        fireArmStats.FireRate = stats.FireRate;
+        fireArmStats.FireSpreadVariance = stats.FireSpreadVariance;
+        fireArmStats.ShootDelay = stats.ShootDelay;
+        fireArmStats.Ammo = stats.Ammo;
+        fireArmStats.BulletDamage = stats.BulletDamage;
+        fireArmStats.BulletSpeed = stats.BulletSpeed;
+        fireArmStats.BounceDistance = stats.BounceDistance;
+        fireArmStats.ImpactForce = stats.ImpactForce;
+    }
+    private Card GetNewFireArmCard()
+    {
+        if (currentFireArmCard >= fireArmsCards.Count - 1)
+        {
+            fireArmsCards = GetComponent<CharacterDeckManager>().GetFireArmCards(true);
+            return fireArmsCards[currentFireArmCard = 0];
+        }
+        else
+            return fireArmsCards[++currentFireArmCard];
     }
     #region Methods
     private Vector3 GetSpreadedDirection()
@@ -55,9 +92,9 @@ public class FireArm : MonoBehaviour
         if (AddBulletSpread)
         {
             direction += new Vector3(
-                Random.Range(-fireSpreadVariance.x, fireSpreadVariance.x),
-                Random.Range(-fireSpreadVariance.y, fireSpreadVariance.y),
-                Random.Range(-fireSpreadVariance.z, fireSpreadVariance.z)
+                Random.Range(-fireArmStats.FireSpreadVariance.x, fireArmStats.FireSpreadVariance.x),
+                Random.Range(-fireArmStats.FireSpreadVariance.y, fireArmStats.FireSpreadVariance.y),
+                Random.Range(-fireArmStats.FireSpreadVariance.z, fireArmStats.FireSpreadVariance.z)
             );
 
             direction.Normalize();
@@ -69,14 +106,14 @@ public class FireArm : MonoBehaviour
     {
         if (target != null)
         {
-            target.TakeDamage(bulletDamage);
+            target.TakeDamage(fireArmStats.BulletDamage);
         }
 
     }
     private void SetPush(Rigidbody enemyRB, Vector3 normal)
     {
         if (AddImpactForeceBullets && enemyRB != null)
-            enemyRB.AddForce(-normal * impactForce);
+            enemyRB.AddForce(-normal * fireArmStats.ImpactForce);
     }
     #endregion
     #region Mechanic
@@ -90,28 +127,25 @@ public class FireArm : MonoBehaviour
         RaycastHit hit;
 
         // Particles play
-        Debug.Log("Play ShootParticles");
         muzzleFlash.Play();
         bulletFlash.Play();
-        Debug.Log("Add Camera Shake");
         // If its allow Camera Shake movment hten apply trauma movment
-        if (AddCameraShake) fpsCamera.GetComponent<CameraShake>().Trauma = CameraShakeForce;
+        if (AddCameraShake) fpsCamera.GetComponent<CameraShake>().Trauma = fireArmStats.CameraShakeForce;
 
         // 
         //-----------------
         // Ray cast direction Builder //
         //-----------------
         //
-        Debug.Log("Building ray");
         direction = GetSpreadedDirection();
         // 
         //-----------------
         // Ray cast detect Collision //
         //-----------------
         //
-        if (Physics.Raycast(fpsCamera.transform.position, direction, out hit, fireArmRange))
+        Ray ray = new Ray(fpsCamera.transform.position, direction);
+        bool rayCollision = Physics.Raycast(ray, out hit, fireArmStats.FireArmRange);
         {
-            Debug.Log("shoot collision detected");
             // 
             //-----------------
             // check if we have to //
@@ -121,17 +155,17 @@ public class FireArm : MonoBehaviour
             // Add bullet Trail Render
             if (AddBulletTrail)
             {
-                Debug.Log("use bullet");
-                TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
-                if (hit.transform.GetComponent<CharacterStatsManager>() != null)
+                //TrailRenderer trail = Instantiate(BulletTrailPool, BulletSpawnPoint.position, Quaternion.identity);
+                TrailRenderer trail = BulletTrailPool.GetObject().GetComponent<TrailRenderer>();
+                trail.transform.position = BulletSpawnPoint.position;
+                trail.transform.rotation = BulletSpawnPoint.rotation;
+                if (hit.transform?.GetComponent<CharacterStatsManager>() != null)
                 {
-                    Debug.Log("no bounce in player");
                     StartCoroutine(BulletManager(trail, hit.point, hit.normal, 0, true));
                 }
                 else
                 {
-                    Debug.Log("bounce in any thing");
-                    StartCoroutine(BulletManager(trail, hit.point, hit.normal, bounceDistance, true));
+                    StartCoroutine(BulletManager(trail, rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), hit.normal, fireArmStats.BounceDistance, rayCollision));
                 }
             }
             else
@@ -141,14 +175,11 @@ public class FireArm : MonoBehaviour
                 // impact effect Manager //
                 //-----------------
                 //
-                Debug.Log("No bollet trail use");
-                GameObject impactEffectOBJ = Instantiate(impactEffect, hit.point,Quaternion.LookRotation(hit.normal));
+                GameObject impactEffectOBJ = Instantiate(impactEffect, rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), Quaternion.LookRotation(hit.normal));
 
             }
-            Debug.Log("Seting damage");
             // set damage to enemy
-            SetDamage(hit.transform.GetComponent<CharacterStatsManager>());
-            Debug.Log("Seting pushForce");
+            SetDamage(hit.transform?.GetComponent<CharacterStatsManager>());
             // add push force to enemy
             SetPush(hit.rigidbody, hit.normal);
         }
@@ -161,7 +192,6 @@ public class FireArm : MonoBehaviour
         //-----------------
         // trail/bullet movment //
         //-----------------
-        Debug.Log("Moving trail");
         // get and set startPosition to calculate movment in the future
         Vector3 startPosition = Trail.transform.position;
         // Calculate distace of spawn to hit point
@@ -177,14 +207,13 @@ public class FireArm : MonoBehaviour
             // whose result is a value between 0 and 1
             Trail.transform.position = Vector3.Lerp(startPosition, HitPoint, 1 - (remainingDistance / distance));
             // calculation of the distance traveled in each frame which is given by the speed of the vale and the time between frames.
-            remainingDistance -= bulletSpeed * Time.deltaTime;
+            remainingDistance -= fireArmStats.BulletSpeed * Time.deltaTime;
             // yield return null tells the Uinty's coroutine scheduler to wait for the next frame and continue execution from this line
             // which produces a gradual movement effect
             yield return null;
         }
         // Make sure that arrive to evade bugs
         Trail.transform.position = HitPoint;
-        Debug.Log("Bullet Arrived");
         //
         //-----------------
         // Impact Manager //
@@ -195,7 +224,6 @@ public class FireArm : MonoBehaviour
         // Else just skip Impact logic and destroy the bullet
         if (MadeImpact)
         {
-            Debug.Log("MadeImpact");
             //
             //-----------------
             // Bounce Function //
@@ -203,7 +231,6 @@ public class FireArm : MonoBehaviour
             //
             // if we said that can Bounce and the Bounce distance of the trajectory does not reach the maximum
             ////// Then calculate a new Bounced direction vector3 and checks Ray collisions logics
-            Debug.Log("Bounce Function");
             if (AddBounceBullets && BounceDistance > 0)
             {
                 Vector3 bounceDirection = Vector3.Reflect(direction, HitNormal);
@@ -213,7 +240,6 @@ public class FireArm : MonoBehaviour
                 // ray ckecks //
                 //-----------------
                 //
-                Debug.Log("Ray Checks");
                 // Comprueba si la trayectoria de la bala chocará con un player
                 ////// entonces actualiza PlayerStats y Actualiza movimiento de la bala en BulletManager
                 // Comprueba si la trayectoria de la bala choca con algo
@@ -228,16 +254,14 @@ public class FireArm : MonoBehaviour
                 //
                 if (wasCollision)
                 {
-                    Debug.Log("Was Collision");
                     //
                     //-----------------
                     // if Collision was with player //
                     //-----------------
                     //
-                    if (bounceHit.transform.GetComponent<CharacterStatsManager>())
+                    if (bounceHit.transform?.GetComponent<CharacterStatsManager>())
                     {
-                        Debug.Log("Player detected");
-                        SetDamage(bounceHit.transform.GetComponent<CharacterStatsManager>());
+                        SetDamage(bounceHit.transform?.GetComponent<CharacterStatsManager>());
                         SetPush(bounceHit.rigidbody, bounceHit.normal);
                         yield return StartCoroutine(BulletManager(
                             Trail,
@@ -263,14 +287,7 @@ public class FireArm : MonoBehaviour
                 //
                 else
                 {
-                    Debug.Log("Wasn't Collision");
-                    yield return StartCoroutine(BulletManager(
-                        Trail,
-                        HitPoint + bounceDirection * BounceDistance,
-                        Vector3.zero,
-                        0,
-                        false
-                    ));
+                    yield return StartCoroutine(BulletManager(Trail, HitPoint + bounceDirection * BounceDistance, Vector3.zero, 0, false));
                 }
             }
             //
@@ -279,7 +296,6 @@ public class FireArm : MonoBehaviour
             //-----------------
             //
             // Instanciate impactEfect
-            Debug.Log("ImpactEffect");
             Instantiate(impactEffect, HitPoint, Quaternion.LookRotation(HitNormal));
         }
         //
@@ -288,15 +304,15 @@ public class FireArm : MonoBehaviour
         //-----------------
         //
         // Destroys bullet when its run ends
-        Debug.Log("Destroy Bullt");
-        Destroy(Trail.gameObject, Trail.time);
+        //Destroy(Trail.gameObject, Trail.time);
+        yield return new WaitForSeconds(Trail.time);
+        Trail.gameObject.SetActive(false);
     }
     #endregion
     //--------------------------- Draw
     private void OnDrawGizmos()
     {
-        Debug.DrawRay(fpsCamera.transform.position, fpsCamera.transform.forward, Color.green, fireArmRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(fpsCamera.transform.position, (direction != new Vector3() ? direction : fpsCamera.transform.forward) * fireArmRange);
+        Gizmos.DrawRay(fpsCamera.transform.position, (direction != new Vector3() ? direction : fpsCamera.transform.forward) * fireArmStats.FireArmRange);
     }
 }

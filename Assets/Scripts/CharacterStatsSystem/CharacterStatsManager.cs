@@ -7,8 +7,9 @@ public class CharacterStatsManager : MonoBehaviour
 {
     [SerializeField]
     private CharacterStats characterStats = new CharacterStats();
+    public CharacterStats Stats { get { return characterStats; } }
 
-    
+
     #region Mechanics
     /// <summary>
     /// This method calculates the damage received based on the <paramref name="damage"/> and <see cref="CharacterStats.Endurance"/> parameters.
@@ -29,18 +30,24 @@ public class CharacterStatsManager : MonoBehaviour
     {
         characterStats = cs;
     }
-    public void UpdateCharacterStats(CharacterStats cs)
+    public void UpdateCharacterStats(CharacterStats cs, bool inverted = false)
     {
         characterStats.UpdateHealth(cs.Health);
-        characterStats.UpdateEndurance(cs.Endurance);
-        characterStats.UpdateStrength(cs.Strength);
-        characterStats.UpdateSpeed(cs.Speed);
-        characterStats.UpdateJumpForce(cs.JumpForce);
-        characterStats.UpdateSize(cs.Size);
-        characterStats.IsWeaked(cs.WeakedState);
-        characterStats.IsSearching(cs.SearchingState);
-        characterStats.IsInmortal(cs.InmortalState);
-        characterStats.IsFallBack(cs.FallBackState);
+        characterStats.UpdateEndurance(inverted ? -cs.Endurance : cs.Endurance);
+        characterStats.UpdateStrength(inverted ? -cs.Strength : cs.Strength);
+        characterStats.UpdateSpeed(inverted ? -cs.Speed : cs.Speed);
+        characterStats.UpdateJumpForce(inverted ? -cs.JumpForce : cs.JumpForce);
+        characterStats.UpdateSize(inverted ? -cs.Size : cs.Size);
+        characterStats.IsWeaked(inverted ? false : cs.WeakedState);
+        characterStats.IsSearching(inverted ? false : cs.SearchingState);
+        characterStats.IsInmortal(inverted ? false : cs.InmortalState);
+        characterStats.IsFallBack(inverted ? false : cs.FallBackState);
+    }
+    public IEnumerator TimedUpdateCharacterStats(CharacterStats cs, float t)
+    {
+        UpdateCharacterStats(cs);
+        yield return new WaitForSeconds(t);
+        UpdateCharacterStats(cs, true);
     }
     #endregion
 }

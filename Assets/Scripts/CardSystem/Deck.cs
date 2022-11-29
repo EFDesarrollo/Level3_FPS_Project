@@ -16,8 +16,7 @@ public class Deck
     }
     public bool IsValid(List<Card> deck)
     {
-        Debug.Log("Deck: IsValid");
-        int validateNum = 0;
+                int validateNum = 0;
         foreach (Card i in deck)
         {
             validateNum += i.Type;
@@ -30,26 +29,22 @@ public class Deck
     }
     public void AddCard(Card card)
     {
-        Debug.Log("Deck: AddCard");
-        List<Card> temp = Cards;
+                List<Card> temp = Cards;
         temp.Add(card);
         if (IsValid(temp))
             Cards = temp;
     }
     public void QuitCard(Card card)
     {
-        Debug.Log("Deck: QuitCard");
-        if (Cards.Contains(card))
+                if (Cards.Contains(card))
             Cards.Remove(card);
     }
     public void SetCards(List<Card> newCards)
     {
-        Debug.Log("Deck: SetCard");
-        Cards = newCards;
+                Cards = newCards;
     }
     public List<Card> GetCards()
     {
-        Debug.Log("Deck: GetCards");
-        return Cards;
+                return Cards;
     }
 }

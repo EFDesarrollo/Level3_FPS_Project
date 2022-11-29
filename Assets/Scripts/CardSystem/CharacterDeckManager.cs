@@ -6,19 +6,20 @@ public class CharacterDeckManager : MonoBehaviour
 {
     [SerializeField]
     private Deck deck;
+    [SerializeField] private int selectedCard;
     public string gameMangerTag;
 
+    private void Awake()
+    {
+        deck = GetDeck();
+    }
     private void Start()
     {
-        Debug.Log("ManagerGettingDeck");
-        deck = GetDeck();
     }
 
     #region Methods
     public Deck GetDeck()
     {
-        Debug.Log("CharacterDeckManager: GetDeck");
-        Debug.Log("Find: " + GameObject.FindGameObjectsWithTag(gameMangerTag).Length);
         Deck deck = GameObject.FindGameObjectsWithTag(gameMangerTag)[0].GetComponent<GameManager>().Deck;
         if (deck == null)
             deck = new Deck();
@@ -26,8 +27,49 @@ public class CharacterDeckManager : MonoBehaviour
     }
     public void SetCharacterDeck(Deck newDeck)
     {
-        Debug.Log("CharacterDeckManager: SetingDeck");
         GameObject.Find(gameMangerTag).GetComponent<GameManager>().Deck = newDeck;
+    }
+    public List<Card> GetHabilityCards(bool sorted = false)
+    {
+        List<Card> cards = new List<Card>();
+        foreach (Card card in deck.GetCards())
+        {
+            if (card.Type > 1)
+                cards.Add(card);
+        }
+        if (sorted)
+            return SortCards(cards);
+        return cards;
+    }
+    public List<Card> GetFireArmCards(bool sorted = false)
+    {
+        List<Card> cards = new List<Card>();
+        foreach (Card card in deck.GetCards())
+        {
+            if (card.Type == 1)
+                cards.Add(card);
+        }
+        if (sorted)
+            return SortCards(cards);
+        return cards;
+    }
+    public List<Card> SortCards(List<Card> cards)
+    {
+        List<Card> sortedCards = cards;
+        foreach (Card card in sortedCards)
+        {
+            card.Priority = Random.Range(0, 10);
+        }
+        sortedCards.Sort(SortFunctionByPriority);
+        return sortedCards;
+    }
+    public int SortFunctionByPriority(Card a, Card b)
+    {
+        if (a.Priority < b.Priority)
+            return -1;
+        if (a.Priority > b.Priority)
+            return 1;
+        return 0;
     }
     #endregion
 }

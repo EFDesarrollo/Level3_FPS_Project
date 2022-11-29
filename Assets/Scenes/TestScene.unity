@@ -5221,6 +5221,137 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194174347}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &220969427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 220969428}
+  - component: {fileID: 220969430}
+  - component: {fileID: 220969429}
+  - component: {fileID: 220969431}
+  m_Layer: 5
+  m_Name: Card2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &220969428
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220969427}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2064481464}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 160, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &220969429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220969427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &220969430
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220969427}
+  m_CullTransparentMesh: 1
+--- !u!114 &220969431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220969427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769cfe5f82eebf643a162a63a88d5fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inDeck: 0
+  Card:
+    image: {fileID: 0}
+    newCharacterStats:
+      team: 0
+      RetryPoints: 0
+      MaxRetryPoints: 0
+      CardPoints: 0
+      MaxCardPoints: 0
+      Health: 0
+      MaxHealth: 0
+      Endurance: 0
+      MaxEndurance: 0
+      Strength: 0
+      MaxStrength: 0
+      Size: 0
+      MaxSize: 0
+      MinSize: 0
+      Speed: 0
+      MaxSpeed: 0
+      JumpForce: 0
+      MaxJumpForce: 0
+      MinJumpForce: 0
+      WeakedState: 0
+      InmortalState: 0
+      SearchingState: 0
+      FallBackState: 0
+    newFireArmStats:
+      cameraShakeForce: 0.05
+      fireArmRange: 100
+      fireRate: 15
+      fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+      shootDelay: 0.5
+      ammo: 50
+      bulletDamage: 10
+      bulletSpeed: 100
+      bounceDistance: 10
+      impactForce: 30
+    type: 0
+    priority: 0
+    activeTime: 0
+    refreshTime: 0
 --- !u!1 &243035565
 GameObject:
   m_ObjectHideFlags: 0
@@ -5433,6 +5564,137 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271396656}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &297772030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297772031}
+  - component: {fileID: 297772033}
+  - component: {fileID: 297772032}
+  - component: {fileID: 297772034}
+  m_Layer: 5
+  m_Name: WeaponCard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &297772031
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297772030}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 498463420}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &297772032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297772030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &297772033
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297772030}
+  m_CullTransparentMesh: 1
+--- !u!114 &297772034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297772030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769cfe5f82eebf643a162a63a88d5fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inDeck: 0
+  Card:
+    image: {fileID: 0}
+    newCharacterStats:
+      team: 0
+      RetryPoints: 0
+      MaxRetryPoints: 0
+      CardPoints: 0
+      MaxCardPoints: 0
+      Health: 0
+      MaxHealth: 0
+      Endurance: 0
+      MaxEndurance: 0
+      Strength: 0
+      MaxStrength: 0
+      Size: 0
+      MaxSize: 0
+      MinSize: 0
+      Speed: 0
+      MaxSpeed: 0
+      JumpForce: 0
+      MaxJumpForce: 0
+      MinJumpForce: 0
+      WeakedState: 0
+      InmortalState: 0
+      SearchingState: 0
+      FallBackState: 0
+    newFireArmStats:
+      cameraShakeForce: 0.05
+      fireArmRange: 100
+      fireRate: 15
+      fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+      shootDelay: 0.5
+      ammo: 50
+      bulletDamage: 10
+      bulletSpeed: 100
+      bounceDistance: 10
+      impactForce: 30
+    type: 0
+    priority: 0
+    activeTime: 0
+    refreshTime: 0
 --- !u!1 &329642601
 GameObject:
   m_ObjectHideFlags: 0
@@ -5466,6 +5728,137 @@ Transform:
   m_Father: {fileID: 672046351}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &390176242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 390176243}
+  - component: {fileID: 390176245}
+  - component: {fileID: 390176244}
+  - component: {fileID: 390176246}
+  m_Layer: 5
+  m_Name: Card1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &390176243
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390176242}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2064481464}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &390176244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390176242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &390176245
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390176242}
+  m_CullTransparentMesh: 1
+--- !u!114 &390176246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390176242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769cfe5f82eebf643a162a63a88d5fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inDeck: 0
+  Card:
+    image: {fileID: 0}
+    newCharacterStats:
+      team: 0
+      RetryPoints: 0
+      MaxRetryPoints: 0
+      CardPoints: 0
+      MaxCardPoints: 0
+      Health: 0
+      MaxHealth: 0
+      Endurance: 0
+      MaxEndurance: 0
+      Strength: 0
+      MaxStrength: 0
+      Size: 0
+      MaxSize: 0
+      MinSize: 0
+      Speed: 0
+      MaxSpeed: 0
+      JumpForce: 0
+      MaxJumpForce: 0
+      MinJumpForce: 0
+      WeakedState: 0
+      InmortalState: 0
+      SearchingState: 0
+      FallBackState: 0
+    newFireArmStats:
+      cameraShakeForce: 0.05
+      fireArmRange: 100
+      fireRate: 15
+      fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+      shootDelay: 0.5
+      ammo: 50
+      bulletDamage: 10
+      bulletSpeed: 100
+      bounceDistance: 10
+      impactForce: 30
+    type: 0
+    priority: 0
+    activeTime: 0
+    refreshTime: 0
 --- !u!1 &416361732
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,6 +6205,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &498463419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498463420}
+  m_Layer: 5
+  m_Name: CardHUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &498463420
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498463419}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2064481464}
+  - {fileID: 297772031}
+  m_Father: {fileID: 1291855360}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 60}
+  m_SizeDelta: {x: 1900, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &541602620
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,7 +6453,6 @@ GameObject:
   - component: {fileID: 731129435}
   - component: {fileID: 731129434}
   - component: {fileID: 731129433}
-  - component: {fileID: 731129436}
   m_Layer: 0
   m_Name: FireArmTest
   m_TagString: Untagged
@@ -6110,39 +6540,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731129431}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &731129436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731129431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c834a7b827cedbd4381476b0e339062c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanShoot: 1
-  AddBulletSpread: 1
-  AddBulletTrail: 1
-  AddBounceBullets: 1
-  AddImpactForeceBullets: 1
-  AddCameraShake: 1
-  CameraShakeForce: 0.03
-  fireArmRange: 100
-  fireRate: 3
-  fireSpreadVariance: {x: 0.01, y: 0.02, z: 0.01}
-  ShootDelay: 0.5
-  bulletDamage: 10
-  bulletSpeed: 100
-  bounceDistance: 5
-  impactForce: 30
-  fpsCamera: {fileID: 963194227}
-  BulletSpawnPoint: {fileID: 1948755357}
-  muzzleFlash: {fileID: 132237194}
-  bulletFlash: {fileID: 1337605161}
-  impactEffect: {fileID: 9049201520723265453, guid: 7d30d4fe338dd92429eb06d87f987bab, type: 3}
-  BulletTrail: {fileID: 4425161913257292289, guid: 78bf45921e2aba44282f9114b2466401, type: 3}
 --- !u!1 &802101025
 GameObject:
   m_ObjectHideFlags: 0
@@ -6152,6 +6549,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 802101026}
+  - component: {fileID: 802101027}
+  - component: {fileID: 802101029}
+  - component: {fileID: 802101028}
+  - component: {fileID: 802101030}
+  - component: {fileID: 802101031}
+  - component: {fileID: 802101032}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -6176,6 +6579,148 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &802101027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802101025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80114ab5fd9756546a97ba58a0e6f027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deck:
+    Name: Default
+    Cards: []
+  selectedCard: 0
+  gameMangerTag: GameController
+--- !u!114 &802101028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802101025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c834a7b827cedbd4381476b0e339062c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanShoot: 1
+  AddBulletSpread: 1
+  AddBulletTrail: 1
+  AddBounceBullets: 1
+  AddImpactForeceBullets: 1
+  AddCameraShake: 1
+  fireArmStats:
+    cameraShakeForce: 0.05
+    fireArmRange: 10
+    fireRate: 15
+    fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
+    shootDelay: 0.5
+    ammo: 50
+    bulletDamage: 10
+    bulletSpeed: 100
+    bounceDistance: 10
+    impactForce: 30
+  fpsCamera: {fileID: 963194227}
+  BulletSpawnPoint: {fileID: 1948755357}
+  muzzleFlash: {fileID: 132237194}
+  bulletFlash: {fileID: 1337605161}
+  impactEffect: {fileID: 9049201520723265453, guid: 7d30d4fe338dd92429eb06d87f987bab, type: 3}
+  BulletTrailPool: {fileID: 802101031}
+  currentFireArmCard: 0
+--- !u!114 &802101029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802101025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b00d929a6cc3c4abfd61e7daf79772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStats:
+    team: 0
+    RetryPoints: 0
+    MaxRetryPoints: 3
+    CardPoints: 0
+    MaxCardPoints: 100
+    Health: 0
+    MaxHealth: 100
+    Endurance: 0
+    MaxEndurance: 100
+    Strength: 0
+    MaxStrength: 100
+    Size: 0
+    MaxSize: 2
+    MinSize: 0
+    Speed: 0
+    MaxSpeed: 10
+    JumpForce: 0
+    MaxJumpForce: 10
+    MinJumpForce: 0
+    WeakedState: 0
+    InmortalState: 0
+    SearchingState: 0
+    FallBackState: 0
+--- !u!114 &802101030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802101025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a4afc08aa87f1459890bc198674c7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HabilityCardContent: {fileID: 2064481463}
+  FireArmCard: {fileID: 297772030}
+  HealthBar: {fileID: 0}
+  EnduranceBar: {fileID: 0}
+  BulletsBar: {fileID: 0}
+  selectedCard: 0
+  crd: 0
+  cardsForHUD: []
+--- !u!114 &802101031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802101025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1e72c1f722303448f518bf3bbce767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolGameObject: {fileID: 4425161913257292290, guid: 78bf45921e2aba44282f9114b2466401, type: 3}
+  poolSize: 50
+--- !u!114 &802101032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802101025}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935310d911faf4c4e8f82a30d6cd5756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swayIntensityX: 0.1
+  swayIntensityY: 0.1
+  maxSway: 0.2
+  minSway: -0.2
+  bobOverrides: []
+  weapon: {fileID: 731129432}
+  currentSpeed: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6469,7 +7014,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.2e-44, y: 6.613608e+10, z: 6.2e-44, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 6.613608e+10, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -6489,6 +7034,184 @@ Transform:
   m_Father: {fileID: 541602621}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1209687377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1209687381}
+  - component: {fileID: 1209687380}
+  - component: {fileID: 1209687379}
+  - component: {fileID: 1209687378}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1209687378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209687377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1209687379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209687377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1209687380
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209687377}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1209687381
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209687377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1291855360}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!1 &1291855359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1291855360}
+  - component: {fileID: 1291855362}
+  - component: {fileID: 1291855361}
+  m_Layer: 5
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1291855360
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291855359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 498463420}
+  m_Father: {fileID: 1209687381}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1291855361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291855359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1291855362
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291855359}
+  m_CullTransparentMesh: 1
 --- !u!1 &1337605158
 GameObject:
   m_ObjectHideFlags: 0
@@ -11359,7 +12082,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &1511514344
+--- !u!1 &1446354848
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11367,43 +12090,444 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1511514346}
-  - component: {fileID: 1511514345}
+  - component: {fileID: 1446354850}
+  - component: {fileID: 1446354849}
   m_Layer: 0
-  m_Name: Deck
-  m_TagString: Untagged
+  m_Name: GameController
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1511514345
+--- !u!114 &1446354849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511514344}
+  m_GameObject: {fileID: 1446354848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4877f89ec32fca489471ddf26d70d23, type: 3}
+  m_Script: {fileID: 11500000, guid: dae0c0ae7da38ba4ea3a3fc40d7b223f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Cards: []
---- !u!4 &1511514346
+  deck:
+    Name: Player
+    Cards:
+    - image: {fileID: 21300000, guid: 7ee48c5fba4919649a8a6094cbead669, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 50
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: 9aa4348290784b2468144a97eb15d8d7, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 1
+        fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: c8a69ecdf54ac8e4b873466605de27ff, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: cdb88fdb0cf46b244a667edaff21c7df, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 5
+        fireSpreadVariance: {x: 0.01, y: 0.05, z: 0.01}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: c9ed6d6ea2f9657409bfa068d4846139, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.09
+        fireArmRange: 100
+        fireRate: 20
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 100
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 1
+        MaxRetryPoints: 1
+        CardPoints: 1
+        MaxCardPoints: 1
+        Health: 1
+        MaxHealth: 1
+        Endurance: 1
+        MaxEndurance: 1
+        Strength: 1
+        MaxStrength: 1
+        Size: 1
+        MaxSize: 1
+        MinSize: 1
+        Speed: 1
+        MaxSpeed: 1
+        JumpForce: 1
+        MaxJumpForce: 1
+        MinJumpForce: 1
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 2
+      priority: 0
+      activeTime: 1
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: 70632ddfe8e71b04b8f90ef7e29a9e98, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 1
+        MaxRetryPoints: 1
+        CardPoints: 1
+        MaxCardPoints: 1
+        Health: 1
+        MaxHealth: 1
+        Endurance: 1
+        MaxEndurance: 1
+        Strength: 1
+        MaxStrength: 1
+        Size: 1
+        MaxSize: 1
+        MinSize: 1
+        Speed: 1
+        MaxSpeed: 1
+        JumpForce: 1
+        MaxJumpForce: 1
+        MinJumpForce: 1
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 2
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 1
+        MaxRetryPoints: 1
+        CardPoints: 1
+        MaxCardPoints: 1
+        Health: 1
+        MaxHealth: 1
+        Endurance: 1
+        MaxEndurance: 1
+        Strength: 1
+        MaxStrength: 1
+        Size: 1
+        MaxSize: 1
+        MinSize: 1
+        Speed: 1
+        MaxSpeed: 1
+        JumpForce: 1
+        MaxJumpForce: 1
+        MinJumpForce: 1
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 2
+      priority: 0
+      activeTime: 1
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: 3a0c527d7f890d64a9b56b086e6e766a, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 2
+        MaxRetryPoints: 2
+        CardPoints: 2
+        MaxCardPoints: 2
+        Health: 2
+        MaxHealth: 2
+        Endurance: 2
+        MaxEndurance: 2
+        Strength: 2
+        MaxStrength: 2
+        Size: 2
+        MaxSize: 2
+        MinSize: 2
+        Speed: 2
+        MaxSpeed: 2
+        JumpForce: 2
+        MaxJumpForce: 2
+        MinJumpForce: 2
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 2
+      priority: 0
+      activeTime: 1
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: fd098fb4cf57bad419701c802e442b7e, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 5
+        MaxRetryPoints: 5
+        CardPoints: 5
+        MaxCardPoints: 5
+        Health: 5
+        MaxHealth: 5
+        Endurance: 5
+        MaxEndurance: 5
+        Strength: 5
+        MaxStrength: 5
+        Size: 5
+        MaxSize: 5
+        MinSize: 5
+        Speed: 5
+        MaxSpeed: 5
+        JumpForce: 5
+        MaxJumpForce: 5
+        MinJumpForce: 5
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 3
+      priority: 0
+      activeTime: 2
+      refreshTime: 0
+--- !u!4 &1446354850
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511514344}
+  m_GameObject: {fileID: 1446354848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5312095, y: 0.30146945, z: -0.198758}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1529852555
 GameObject:
@@ -21234,7 +22358,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.2e-44, y: 6.613608e+10, z: 6.2e-44, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 6.613608e+10, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -21301,6 +22425,57 @@ Transform:
   m_Father: {fileID: 418799088}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2064481463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064481464}
+  - component: {fileID: 2064481465}
+  m_Layer: 5
+  m_Name: HabilityCardContent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2064481464
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064481463}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 390176243}
+  - {fileID: 220969428}
+  m_Father: {fileID: 498463420}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 160, y: 50}
+  m_SizeDelta: {x: 320, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2064481465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064481463}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba537b7e8d9d64448af1b0931217c436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2141236383
 GameObject:
   m_ObjectHideFlags: 0
