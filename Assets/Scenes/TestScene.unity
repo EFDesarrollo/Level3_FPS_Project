@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6540,6 +6540,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731129431}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &735648421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 735648422}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &735648422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735648421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 963194228}
+  m_Father: {fileID: 802101026}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &802101025
 GameObject:
   m_ObjectHideFlags: 0
@@ -6574,7 +6606,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 963194228}
+  - {fileID: 735648422}
   - {fileID: 731129432}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -6611,7 +6643,7 @@ MonoBehaviour:
   CanShoot: 1
   AddBulletSpread: 1
   AddBulletTrail: 1
-  AddBounceBullets: 1
+  AddBounceBullets: 0
   AddImpactForeceBullets: 1
   AddCameraShake: 1
   fireArmStats:
@@ -6700,8 +6732,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1e72c1f722303448f518bf3bbce767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolGameObject: {fileID: 4425161913257292290, guid: 78bf45921e2aba44282f9114b2466401, type: 3}
-  poolSize: 50
+  BulletPrefab: {fileID: 4425161913257292290, guid: 78bf45921e2aba44282f9114b2466401, type: 3}
+  ImpactEfect: {fileID: 9049201520723265453, guid: 7d30d4fe338dd92429eb06d87f987bab, type: 3}
+  poolSize: 25
 --- !u!114 &802101032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6804,7 +6837,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 418799088}
-  m_Father: {fileID: 802101026}
+  m_Father: {fileID: 735648422}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229

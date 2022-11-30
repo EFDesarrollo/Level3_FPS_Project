@@ -26,7 +26,7 @@ public class FireArm : MonoBehaviour
     public PoolObjects BulletTrailPool;
 
     private float nextTimeToFire;
-    private Vector3 direction;
+    private Vector3 direction = Vector3.forward;
     private List<Card> fireArmsCards;
     [SerializeField]
     private int currentFireArmCard;
@@ -37,6 +37,7 @@ public class FireArm : MonoBehaviour
         currentFireArmCard = 0;
         GetComponent<HUD_Manager>().ChangeFireArmCard(fireArmsCards[currentFireArmCard]);
         SetFireArmStats(fireArmsCards[currentFireArmCard].NewFireArmStats);
+        
     }
     // Update is called once per frame
     void Update()
@@ -115,6 +116,14 @@ public class FireArm : MonoBehaviour
         if (AddImpactForeceBullets && enemyRB != null)
             enemyRB.AddForce(-normal * fireArmStats.ImpactForce);
     }
+    private IEnumerator InstantiateImpactEfect(Vector3 HitPoint, Vector3 HitNormal)
+    {
+        GameObject impactEffectOBJ = GetComponent<PoolObjects>().GetImpactObject();
+        impactEffect.transform.position = HitPoint;
+        impactEffect.transform.rotation = Quaternion.LookRotation(HitNormal);
+        impactEffect.SetActive(true);
+        yield return null;
+    }
     #endregion
     #region Mechanic
     /// <summary>
@@ -156,7 +165,7 @@ public class FireArm : MonoBehaviour
             if (AddBulletTrail)
             {
                 //TrailRenderer trail = Instantiate(BulletTrailPool, BulletSpawnPoint.position, Quaternion.identity);
-                TrailRenderer trail = BulletTrailPool.GetObject().GetComponent<TrailRenderer>();
+                TrailRenderer trail = BulletTrailPool.GetBulletObject().GetComponent<TrailRenderer>();
                 trail.transform.position = BulletSpawnPoint.position;
                 trail.transform.rotation = BulletSpawnPoint.rotation;
                 if (hit.transform?.GetComponent<CharacterStatsManager>() != null)
@@ -175,8 +184,8 @@ public class FireArm : MonoBehaviour
                 // impact effect Manager //
                 //-----------------
                 //
-                GameObject impactEffectOBJ = Instantiate(impactEffect, rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), Quaternion.LookRotation(hit.normal));
-
+                //Instantiate(impactEffect, rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), Quaternion.LookRotation(hit.normal));
+                StartCoroutine(InstantiateImpactEfect(rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), hit.normal));
             }
             // set damage to enemy
             SetDamage(hit.transform?.GetComponent<CharacterStatsManager>());
@@ -296,7 +305,8 @@ public class FireArm : MonoBehaviour
             //-----------------
             //
             // Instanciate impactEfect
-            Instantiate(impactEffect, HitPoint, Quaternion.LookRotation(HitNormal));
+            //Instantiate(impactEffect, HitPoint, Quaternion.LookRotation(HitNormal));
+            StartCoroutine(InstantiateImpactEfect(HitPoint, HitNormal));
         }
         //
         //-----------------
@@ -305,6 +315,7 @@ public class FireArm : MonoBehaviour
         //
         // Destroys bullet when its run ends
         //Destroy(Trail.gameObject, Trail.time);
+        Debug.Log("Desactivating bullet");
         yield return new WaitForSeconds(Trail.time);
         Trail.gameObject.SetActive(false);
     }

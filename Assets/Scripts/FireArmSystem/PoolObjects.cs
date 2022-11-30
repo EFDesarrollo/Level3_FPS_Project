@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PoolObjects : MonoBehaviour
 {
-    public GameObject poolGameObject;
+    public GameObject BulletPrefab, ImpactEfect;
     public int poolSize = 50;
-    private List<GameObject> poolList = new List<GameObject>();
+    private List<GameObject> bulletsPoolList = new List<GameObject>();
+    private List<GameObject> ImpactPoolList = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -22,19 +23,33 @@ public class PoolObjects : MonoBehaviour
         
     }
 
-    private GameObject InstantiatePoolGameObject()
+    private GameObject InstantiatePoolGameObject(bool returnimpact = false)
     {
-        GameObject gameObject = Instantiate(poolGameObject);
-        gameObject.SetActive(false);
-        poolList.Add(gameObject);
-        return gameObject;
+        GameObject bulletObject = Instantiate(BulletPrefab);
+        GameObject impactObject = Instantiate(ImpactEfect);
+        bulletObject.SetActive(false);
+        impactObject.SetActive(false);
+        bulletsPoolList.Add(bulletObject);
+        ImpactPoolList.Add(impactObject);
+        return returnimpact? impactObject: bulletObject;
     }
-    public GameObject GetObject()
+    public GameObject GetBulletObject()
     {
-        GameObject gameObject = poolList.Find(x => x.activeInHierarchy == false);
+        GameObject gameObject = bulletsPoolList.Find(x => x.activeInHierarchy == false);
         if (gameObject == null)
         {
             gameObject = InstantiatePoolGameObject();
+        }
+        gameObject.SetActive(true);
+        return gameObject;
+    }
+    public GameObject GetImpactObject()
+    {
+        GameObject gameObject = ImpactPoolList.Find(x => x.activeInHierarchy == false);
+        if (gameObject == null)
+        {
+            gameObject = InstantiatePoolGameObject(true);
+            Debug.LogError("NoneObj");
         }
         gameObject.SetActive(true);
         return gameObject;
