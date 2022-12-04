@@ -14,12 +14,11 @@ public class PlayerController : MonoBehaviour
     public float minvistaX = -80, minvistaY;
     private float rotacionX;
 
-    private Camera camara;
+    public GameObject camara;
     private Rigidbody fisica;
 
     private void Awake()
     {
-        camara = Camera.main;
         fisica = GetComponent<Rigidbody>();
 
         Cursor.lockState = CursorLockMode.Locked;

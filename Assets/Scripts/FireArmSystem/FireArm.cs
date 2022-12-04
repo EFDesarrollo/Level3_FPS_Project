@@ -22,8 +22,8 @@ public class FireArm : MonoBehaviour
     public Transform BulletSpawnPoint;
     public ParticleSystem muzzleFlash;
     public ParticleSystem bulletFlash;
-    public GameObject impactEffect;
-    public PoolObjects BulletTrailPool;
+    //public GameObject impactEffect;
+    public PoolObjects PoolObjs;
 
     private float nextTimeToFire;
     private Vector3 direction = Vector3.forward;
@@ -116,13 +116,12 @@ public class FireArm : MonoBehaviour
         if (AddImpactForeceBullets && enemyRB != null)
             enemyRB.AddForce(-normal * fireArmStats.ImpactForce);
     }
-    private IEnumerator InstantiateImpactEfect(Vector3 HitPoint, Vector3 HitNormal)
+    private void InstantiateImpactEfect(Vector3 HitPoint, Vector3 HitNormal)
     {
-        GameObject impactEffectOBJ = GetComponent<PoolObjects>().GetImpactObject();
-        impactEffect.transform.position = HitPoint;
-        impactEffect.transform.rotation = Quaternion.LookRotation(HitNormal);
-        impactEffect.SetActive(true);
-        yield return null;
+        ParticleSystem impactEffectOBJ = PoolObjs.GetImpactObject().GetComponent<ParticleSystem>();
+        Debug.Log(impactEffectOBJ.name);
+        impactEffectOBJ.transform.position = HitPoint;
+        impactEffectOBJ.transform.rotation = Quaternion.LookRotation(HitNormal);
     }
     #endregion
     #region Mechanic
@@ -154,44 +153,43 @@ public class FireArm : MonoBehaviour
         //
         Ray ray = new Ray(fpsCamera.transform.position, direction);
         bool rayCollision = Physics.Raycast(ray, out hit, fireArmStats.FireArmRange);
+        // 
+        //-----------------
+        // check if we have to //
+        // use a trail render //
+        //-----------------
+        //
+        // Add bullet Trail Render
+        if (AddBulletTrail)
         {
-            // 
-            //-----------------
-            // check if we have to //
-            // use a trail render //
-            //-----------------
-            //
-            // Add bullet Trail Render
-            if (AddBulletTrail)
+            //TrailRenderer trail = Instantiate(BulletTrailPool, BulletSpawnPoint.position, Quaternion.identity);
+            TrailRenderer trail = PoolObjs.GetBulletObject().GetComponent<TrailRenderer>();
+            Debug.Log(trail.name);
+            trail.transform.position = BulletSpawnPoint.position;
+            trail.transform.rotation = BulletSpawnPoint.rotation;
+            if (hit.transform?.GetComponent<CharacterStatsManager>() != null)
             {
-                //TrailRenderer trail = Instantiate(BulletTrailPool, BulletSpawnPoint.position, Quaternion.identity);
-                TrailRenderer trail = BulletTrailPool.GetBulletObject().GetComponent<TrailRenderer>();
-                trail.transform.position = BulletSpawnPoint.position;
-                trail.transform.rotation = BulletSpawnPoint.rotation;
-                if (hit.transform?.GetComponent<CharacterStatsManager>() != null)
-                {
-                    StartCoroutine(BulletManager(trail, hit.point, hit.normal, 0, true));
-                }
-                else
-                {
-                    StartCoroutine(BulletManager(trail, rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), hit.normal, fireArmStats.BounceDistance, rayCollision));
-                }
+                StartCoroutine(BulletManager(trail, hit.point, hit.normal, 0, true));
             }
             else
             {
-                // 
-                //-----------------
-                // impact effect Manager //
-                //-----------------
-                //
-                //Instantiate(impactEffect, rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), Quaternion.LookRotation(hit.normal));
-                StartCoroutine(InstantiateImpactEfect(rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), hit.normal));
+                StartCoroutine(BulletManager(trail, rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), hit.normal, fireArmStats.BounceDistance, rayCollision));
             }
-            // set damage to enemy
-            SetDamage(hit.transform?.GetComponent<CharacterStatsManager>());
-            // add push force to enemy
-            SetPush(hit.rigidbody, hit.normal);
         }
+        else
+        {
+            // 
+            //-----------------
+            // impact effect Manager //
+            //-----------------
+            //
+            //Instantiate(impactEffect, rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), Quaternion.LookRotation(hit.normal));
+            InstantiateImpactEfect(rayCollision ? hit.point : ray.GetPoint(fireArmStats.FireArmRange), hit.normal);
+        }
+        // set damage to enemy
+        SetDamage(hit.transform?.GetComponent<CharacterStatsManager>());
+        // add push force to enemy
+        SetPush(hit.rigidbody, hit.normal);
     }
     #endregion
     #region controllers
@@ -306,7 +304,7 @@ public class FireArm : MonoBehaviour
             //
             // Instanciate impactEfect
             //Instantiate(impactEffect, HitPoint, Quaternion.LookRotation(HitNormal));
-            StartCoroutine(InstantiateImpactEfect(HitPoint, HitNormal));
+            InstantiateImpactEfect(HitPoint, HitNormal);
         }
         //
         //-----------------

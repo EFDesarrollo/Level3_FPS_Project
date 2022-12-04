@@ -41,17 +41,19 @@ public class PoolObjects : MonoBehaviour
             gameObject = InstantiatePoolGameObject();
         }
         gameObject.SetActive(true);
+        Debug.Log(gameObject.name);
         return gameObject;
     }
     public GameObject GetImpactObject()
     {
-        GameObject gameObject = ImpactPoolList.Find(x => x.activeInHierarchy == false);
-        if (gameObject == null)
+        GameObject obj = ImpactPoolList.Find(x => x.activeInHierarchy == false);
+        if (obj == null)
         {
-            gameObject = InstantiatePoolGameObject(true);
+            obj = InstantiatePoolGameObject(true);
             Debug.LogError("NoneObj");
         }
-        gameObject.SetActive(true);
-        return gameObject;
+        obj.SetActive(true);
+        Debug.Log(obj.name);
+        return obj;
     }
 }
