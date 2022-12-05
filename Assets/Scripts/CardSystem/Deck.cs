@@ -47,4 +47,18 @@ public class Deck
     {
                 return Cards;
     }
+    public List<Card> GetCardsOfType(int type)
+    {
+        List<Card> newList = new List<Card>();
+        foreach (Card card in Cards)
+        {
+            Debug.Log("card type: " + card.Type);
+            if (card.Type == type)
+            {
+                Debug.Log("Find type: "+type);
+                newList.Add(card);
+            }
+        }
+        return newList;
+    }
 }

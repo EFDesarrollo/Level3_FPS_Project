@@ -12,4 +12,10 @@ public class CardUI : MonoBehaviour
         Debug.Log("CardUI: SetingImage");
         GetComponent<Image>().sprite = img;
     }
+    public void OnClick()
+    {
+        Debug.Log("MenuController Find: "+GameObject.FindGameObjectsWithTag("MenuController").Length);
+        GameObject obj = GameObject.FindGameObjectsWithTag("MenuController")[0];
+        obj.GetComponent<DeckMenu>().ChangeAndUpdateList(this.gameObject);
+    }
 }
