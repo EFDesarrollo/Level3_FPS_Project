@@ -14,7 +14,8 @@ public class FireArm : MonoBehaviour
     public bool AddImpactForeceBullets = true;
     //public bool AddFireArmRecoil = true;
     public bool AddCameraShake = true;
-    [Header("")]
+    [Header("Stats")]
+    public float ReloadTime = 1;
     public FireArmStats fireArmStats = new FireArmStats();
 
     [Header("References")]
@@ -22,7 +23,7 @@ public class FireArm : MonoBehaviour
     public Transform BulletSpawnPoint;
     public ParticleSystem muzzleFlash;
     public ParticleSystem bulletFlash;
-    //public GameObject impactEffect;
+    public GameObject FireArmPrefab;
     public PoolObjects PoolObjs;
 
     private float nextTimeToFire;
@@ -42,24 +43,40 @@ public class FireArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CanShoot = false;
+        direction = fpsCamera.transform.forward;
         // if Player's input && Fire rate allows
         // then Shoot
-        if (CanShoot && Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
-            // Fire Rate Timer
-            nextTimeToFire = Time.time + 1f / fireArmStats.FireRate;
+            CanShoot = true;
+            Debug.Log("FireArm: performed");
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            Debug.Log("FireArm: cancel");
+            CanShoot = false;
+            AddBulletSpread = false;
+        }
+        if (CanShoot)
+        {
             // Shoot Mechanic
             if (fireArmStats.Ammo == 0)
             {
+                FireArmPrefab.GetComponent<Animator>().Play("Reload", 0);
                 Card temp = GetNewFireArmCard();
                 GetComponent<HUD_Manager>().ChangeFireArmCard(temp);
                 SetFireArmStats(temp.NewFireArmStats);
+                nextTimeToFire = Time.time + 1f / ReloadTime;
             }
             else
             {
+                // Fire Rate Timer
+                nextTimeToFire = Time.time + 1f / fireArmStats.FireRate;
                 fireArmStats.Ammo--;
                 Shoot();
             }
+            AddBulletSpread = true;
         }
     }
     private void SetFireArmStats(FireArmStats stats)
@@ -96,6 +113,15 @@ public class FireArm : MonoBehaviour
                 Random.Range(-fireArmStats.FireSpreadVariance.x, fireArmStats.FireSpreadVariance.x),
                 Random.Range(-fireArmStats.FireSpreadVariance.y, fireArmStats.FireSpreadVariance.y),
                 Random.Range(-fireArmStats.FireSpreadVariance.z, fireArmStats.FireSpreadVariance.z)
+            );
+
+            direction.Normalize();
+        }
+        {
+            direction += new Vector3(
+                Random.Range(-0.01f, 0.01f),
+                Random.Range(-0.01f, 0.01f),
+                Random.Range(-0.01f, 0.01f)
             );
 
             direction.Normalize();

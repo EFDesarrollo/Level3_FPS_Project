@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13826,16 +13826,16 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.06
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.04, y: 0.1, z: 0.04}
+        shootDelay: 0.5
+        ammo: 20
+        bulletDamage: 24
+        bulletSpeed: 100
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6554,6 +6554,7 @@ RectTransform:
   m_Children:
   - {fileID: 2064481464}
   - {fileID: 297772031}
+  - {fileID: 940301236}
   m_Father: {fileID: 1291855360}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7238,6 +7239,7 @@ GameObject:
   - component: {fileID: 731129435}
   - component: {fileID: 731129434}
   - component: {fileID: 731129433}
+  - component: {fileID: 731129436}
   m_Layer: 0
   m_Name: FireArmTest
   m_TagString: Untagged
@@ -7326,6 +7328,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731129431}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &731129436
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731129431}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7305e9ea70d2071468476e7efc9e34a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &735648421
 GameObject:
   m_ObjectHideFlags: 0
@@ -7431,18 +7453,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c834a7b827cedbd4381476b0e339062c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanShoot: 1
-  AddBulletSpread: 1
+  CanShoot: 0
+  AddBulletSpread: 0
   AddBulletTrail: 1
   AddBounceBullets: 0
   AddImpactForeceBullets: 1
   AddCameraShake: 1
+  ReloadTime: 1
   fireArmStats:
     cameraShakeForce: 0.05
     fireArmRange: 10
     fireRate: 15
-    fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
-    shootDelay: 0.5
+    fireSpreadVariance: {x: 0.06, y: 0.01, z: 0.1}
+    shootDelay: 0
     ammo: 50
     bulletDamage: 10
     bulletSpeed: 100
@@ -7452,6 +7475,7 @@ MonoBehaviour:
   BulletSpawnPoint: {fileID: 1948755357}
   muzzleFlash: {fileID: 132237194}
   bulletFlash: {fileID: 1337605161}
+  FireArmPrefab: {fileID: 731129431}
   PoolObjs: {fileID: 802101031}
   currentFireArmCard: 0
 --- !u!114 &802101029
@@ -7864,12 +7888,12 @@ RectTransform:
   - {fileID: 369615605}
   - {fileID: 844224967}
   - {fileID: 1738603144}
-  m_Father: {fileID: 2064481464}
+  m_Father: {fileID: 498463420}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -55, y: 0}
+  m_AnchoredPosition: {x: -845, y: 0}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &940301237
@@ -13497,326 +13521,6 @@ MonoBehaviour:
   deck:
     Name: Player
     Cards:
-    - image: {fileID: 21300000, guid: 7ee48c5fba4919649a8a6094cbead669, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 0
-        MaxRetryPoints: 0
-        CardPoints: 0
-        MaxCardPoints: 0
-        Health: 0
-        MaxHealth: 0
-        Endurance: 0
-        MaxEndurance: 0
-        Strength: 0
-        MaxStrength: 0
-        Size: 0
-        MaxSize: 0
-        MinSize: 0
-        Speed: 0
-        MaxSpeed: 0
-        JumpForce: 0
-        MaxJumpForce: 0
-        MinJumpForce: 0
-        WeakedState: 0
-        InmortalState: 0
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0.05
-        fireArmRange: 100
-        fireRate: 50
-        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
-        shootDelay: 0.5
-        ammo: 50
-        bulletDamage: 10
-        bulletSpeed: 100
-        bounceDistance: 10
-        impactForce: 30
-      type: 1
-      priority: 0
-      activeTime: 0
-      refreshTime: 0
-    - image: {fileID: 21300000, guid: 9aa4348290784b2468144a97eb15d8d7, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 0
-        MaxRetryPoints: 0
-        CardPoints: 0
-        MaxCardPoints: 0
-        Health: 0
-        MaxHealth: 0
-        Endurance: 0
-        MaxEndurance: 0
-        Strength: 0
-        MaxStrength: 0
-        Size: 0
-        MaxSize: 0
-        MinSize: 0
-        Speed: 0
-        MaxSpeed: 0
-        JumpForce: 0
-        MaxJumpForce: 0
-        MinJumpForce: 0
-        WeakedState: 0
-        InmortalState: 0
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0.05
-        fireArmRange: 100
-        fireRate: 1
-        fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
-        shootDelay: 0.5
-        ammo: 50
-        bulletDamage: 10
-        bulletSpeed: 100
-        bounceDistance: 10
-        impactForce: 30
-      type: 1
-      priority: 0
-      activeTime: 0
-      refreshTime: 0
-    - image: {fileID: 21300000, guid: c8a69ecdf54ac8e4b873466605de27ff, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 0
-        MaxRetryPoints: 0
-        CardPoints: 0
-        MaxCardPoints: 0
-        Health: 0
-        MaxHealth: 0
-        Endurance: 0
-        MaxEndurance: 0
-        Strength: 0
-        MaxStrength: 0
-        Size: 0
-        MaxSize: 0
-        MinSize: 0
-        Speed: 0
-        MaxSpeed: 0
-        JumpForce: 0
-        MaxJumpForce: 0
-        MinJumpForce: 0
-        WeakedState: 0
-        InmortalState: 0
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0.05
-        fireArmRange: 100
-        fireRate: 15
-        fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
-        shootDelay: 0.5
-        ammo: 50
-        bulletDamage: 10
-        bulletSpeed: 100
-        bounceDistance: 10
-        impactForce: 30
-      type: 1
-      priority: 0
-      activeTime: 0
-      refreshTime: 0
-    - image: {fileID: 21300000, guid: cdb88fdb0cf46b244a667edaff21c7df, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 0
-        MaxRetryPoints: 0
-        CardPoints: 0
-        MaxCardPoints: 0
-        Health: 0
-        MaxHealth: 0
-        Endurance: 0
-        MaxEndurance: 0
-        Strength: 0
-        MaxStrength: 0
-        Size: 0
-        MaxSize: 0
-        MinSize: 0
-        Speed: 0
-        MaxSpeed: 0
-        JumpForce: 0
-        MaxJumpForce: 0
-        MinJumpForce: 0
-        WeakedState: 0
-        InmortalState: 0
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0.05
-        fireArmRange: 100
-        fireRate: 5
-        fireSpreadVariance: {x: 0.01, y: 0.05, z: 0.01}
-        shootDelay: 0.5
-        ammo: 50
-        bulletDamage: 10
-        bulletSpeed: 100
-        bounceDistance: 10
-        impactForce: 30
-      type: 1
-      priority: 0
-      activeTime: 0
-      refreshTime: 0
-    - image: {fileID: 21300000, guid: c9ed6d6ea2f9657409bfa068d4846139, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 0
-        MaxRetryPoints: 0
-        CardPoints: 0
-        MaxCardPoints: 0
-        Health: 0
-        MaxHealth: 0
-        Endurance: 0
-        MaxEndurance: 0
-        Strength: 0
-        MaxStrength: 0
-        Size: 0
-        MaxSize: 0
-        MinSize: 0
-        Speed: 0
-        MaxSpeed: 0
-        JumpForce: 0
-        MaxJumpForce: 0
-        MinJumpForce: 0
-        WeakedState: 0
-        InmortalState: 0
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0.09
-        fireArmRange: 100
-        fireRate: 20
-        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
-        shootDelay: 0.5
-        ammo: 100
-        bulletDamage: 10
-        bulletSpeed: 100
-        bounceDistance: 10
-        impactForce: 30
-      type: 1
-      priority: 0
-      activeTime: 0
-      refreshTime: 0
-    - image: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 1
-        MaxRetryPoints: 1
-        CardPoints: 1
-        MaxCardPoints: 1
-        Health: 1
-        MaxHealth: 1
-        Endurance: 1
-        MaxEndurance: 1
-        Strength: 1
-        MaxStrength: 1
-        Size: 1
-        MaxSize: 1
-        MinSize: 1
-        Speed: 1
-        MaxSpeed: 1
-        JumpForce: 1
-        MaxJumpForce: 1
-        MinJumpForce: 1
-        WeakedState: 0
-        InmortalState: 0
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0.05
-        fireArmRange: 100
-        fireRate: 15
-        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
-        shootDelay: 0.5
-        ammo: 50
-        bulletDamage: 10
-        bulletSpeed: 100
-        bounceDistance: 10
-        impactForce: 30
-      type: 2
-      priority: 0
-      activeTime: 1
-      refreshTime: 0
-    - image: {fileID: 21300000, guid: 70632ddfe8e71b04b8f90ef7e29a9e98, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 1
-        MaxRetryPoints: 1
-        CardPoints: 1
-        MaxCardPoints: 1
-        Health: 1
-        MaxHealth: 1
-        Endurance: 1
-        MaxEndurance: 1
-        Strength: 1
-        MaxStrength: 1
-        Size: 1
-        MaxSize: 1
-        MinSize: 1
-        Speed: 1
-        MaxSpeed: 1
-        JumpForce: 1
-        MaxJumpForce: 1
-        MinJumpForce: 1
-        WeakedState: 0
-        InmortalState: 0
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0.05
-        fireArmRange: 100
-        fireRate: 15
-        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
-        shootDelay: 0.5
-        ammo: 50
-        bulletDamage: 10
-        bulletSpeed: 100
-        bounceDistance: 10
-        impactForce: 30
-      type: 2
-      priority: 0
-      activeTime: 0
-      refreshTime: 0
-    - image: {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 1
-        MaxRetryPoints: 1
-        CardPoints: 1
-        MaxCardPoints: 1
-        Health: 1
-        MaxHealth: 1
-        Endurance: 1
-        MaxEndurance: 1
-        Strength: 1
-        MaxStrength: 1
-        Size: 1
-        MaxSize: 1
-        MinSize: 1
-        Speed: 1
-        MaxSpeed: 1
-        JumpForce: 1
-        MaxJumpForce: 1
-        MinJumpForce: 1
-        WeakedState: 0
-        InmortalState: 0
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0.05
-        fireArmRange: 100
-        fireRate: 15
-        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
-        shootDelay: 0.5
-        ammo: 50
-        bulletDamage: 10
-        bulletSpeed: 100
-        bounceDistance: 10
-        impactForce: 30
-      type: 2
-      priority: 0
-      activeTime: 1
-      refreshTime: 0
     - image: {fileID: 21300000, guid: 3a0c527d7f890d64a9b56b086e6e766a, type: 3}
       newCharacterStats:
         team: 0
@@ -13897,6 +13601,327 @@ MonoBehaviour:
       priority: 0
       activeTime: 2
       refreshTime: 0
+    - image: {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 5
+        MaxRetryPoints: 5
+        CardPoints: 5
+        MaxCardPoints: 5
+        Health: 5
+        MaxHealth: 5
+        Endurance: 5
+        MaxEndurance: 5
+        Strength: 5
+        MaxStrength: 5
+        Size: 5
+        MaxSize: 5
+        MinSize: 5
+        Speed: 5
+        MaxSpeed: 5
+        JumpForce: 5
+        MaxJumpForce: 5
+        MinJumpForce: 5
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.05
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 50
+        bulletDamage: 10
+        bulletSpeed: 100
+        bounceDistance: 10
+        impactForce: 30
+      type: 3
+      priority: 0
+      activeTime: 2
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: 41ab431d994339f4cb5d14c25967195e, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.06
+        fireArmRange: 100
+        fireRate: 15
+        fireSpreadVariance: {x: 0.04, y: 0.1, z: 0.04}
+        shootDelay: 0.5
+        ammo: 20
+        bulletDamage: 24
+        bulletSpeed: 100
+        bounceDistance: 0
+        impactForce: 25
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: 27ed8795e05b35a42a566d1e395d1b68, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.09
+        fireArmRange: 100
+        fireRate: 5
+        fireSpreadVariance: {x: 0.02, y: 0.04, z: 0.02}
+        shootDelay: 0.5
+        ammo: 12
+        bulletDamage: 32
+        bulletSpeed: 100
+        bounceDistance: 0
+        impactForce: 25
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: e0d5fc21228742943b84cff9b62252ba, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.1
+        fireArmRange: 100
+        fireRate: 6
+        fireSpreadVariance: {x: 0.03, y: 0.048, z: 0.02}
+        shootDelay: 0.5
+        ammo: 13
+        bulletDamage: 39
+        bulletSpeed: 100
+        bounceDistance: 0
+        impactForce: 25
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: 2c2bd749ea28e1449942e93a21c08ead, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.13
+        fireArmRange: 100
+        fireRate: 4
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.02}
+        shootDelay: 0.5
+        ammo: 13
+        bulletDamage: 59
+        bulletSpeed: 100
+        bounceDistance: 0
+        impactForce: 25
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: 8f70cfbfd9465a646936eeaebc6f62cb, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.13
+        fireArmRange: 100
+        fireRate: 857
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 30
+        bulletDamage: 28
+        bulletSpeed: 100
+        bounceDistance: 0
+        impactForce: 25
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: c65523d68cb1bb84196b170cf8781a9d, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.1
+        fireArmRange: 100
+        fireRate: 800
+        fireSpreadVariance: {x: 0.05, y: 0.05, z: 0.05}
+        shootDelay: 0.5
+        ammo: 30
+        bulletDamage: 25
+        bulletSpeed: 100
+        bounceDistance: 0
+        impactForce: 25
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+    - image: {fileID: 21300000, guid: 29adab294c3658146ab2d0dca7e86622, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 0
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 0
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0.1
+        fireArmRange: 100
+        fireRate: 800
+        fireSpreadVariance: {x: 0, y: 0.002, z: 0}
+        shootDelay: 0.5
+        ammo: 10
+        bulletDamage: 74
+        bulletSpeed: 100
+        bounceDistance: 0
+        impactForce: 25
+      type: 1
+      priority: 0
+      activeTime: 0
+      refreshTime: 0
+  team: 0
 --- !u!4 &1446354850
 Transform:
   m_ObjectHideFlags: 0
@@ -24311,7 +24336,6 @@ RectTransform:
   m_Children:
   - {fileID: 390176243}
   - {fileID: 220969428}
-  - {fileID: 940301236}
   m_Father: {fileID: 498463420}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
