@@ -7,6 +7,8 @@ public class PanelsManager : MonoBehaviour
     [Header("Paneles UI")] // paneles del menú
     public GameObject initialPanel;
     public GameObject DeckMenu, SignUpPanel, SelectPanel, createRoomContent, joinRoomContent, roomPanel;
+    [Header("Controllers")]
+    public SceneLoader sceneLoader;
 
     private void Start()
     {
@@ -33,6 +35,11 @@ public class PanelsManager : MonoBehaviour
     }
     public void SetActivePanelSignUp()
     {
+        if (GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameManager>().Deck.GetCards().Count == 0)
+        {
+            SetActivePanelDeckMenu();
+            return;
+        }
         SetActivePanel(SignUpPanel);
     }
     public void SetActivePanelSelect()
@@ -59,4 +66,13 @@ public class PanelsManager : MonoBehaviour
         SetActiveContent(joinRoomContent);
     }
     #endregion
+    public void OnClickLoadTrainLevel()
+    {
+        if (GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameManager>().Deck.GetCards().Count == 0)
+        {
+            SetActivePanelDeckMenu();
+            return;
+        }
+        sceneLoader.LoadScene();
+    }
 }

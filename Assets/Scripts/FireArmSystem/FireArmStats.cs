@@ -14,6 +14,7 @@ public class FireArmStats
     [SerializeField] private float shootDelay = .5f; // fire rate?
     [Header("Bullet Stats")]
     [SerializeField] private float ammo = 50;
+    private float maxAmmo = 50;
     [SerializeField] private float bulletDamage = 10f;
     [SerializeField] private float bulletSpeed = 100f;
     [SerializeField] private float bounceDistance = 10f;
@@ -25,6 +26,7 @@ public class FireArmStats
     public Vector3 FireSpreadVariance { get { return fireSpreadVariance; } set { fireSpreadVariance = value; } }
     public float ShootDelay { get { return shootDelay; } set { shootDelay = value; } }
     public float Ammo { get { return ammo; } set { ammo = value; } }
+    public float MaxAmmo { get { return maxAmmo; } set { maxAmmo = value; } }
     public float BulletDamage { get { return bulletDamage; } set { bulletDamage = value; } }
     public float BulletSpeed { get { return bulletSpeed; } set { bulletSpeed = value; } }
     public float BounceDistance { get { return bounceDistance; } set { bounceDistance = value; } }

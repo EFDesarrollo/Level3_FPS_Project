@@ -8,10 +8,12 @@ public class FireArm : MonoBehaviour
 {
     [Header("Has functios")]
     public bool CanShoot = true;
-    public bool AddBulletSpread = true;
+    private bool CanShootNow = true;
+    private bool AddBulletSpread = true;
     public bool AddBulletTrail = true;
     public bool AddBounceBullets = true;
     public bool AddImpactForeceBullets = true;
+    public bool GetPointsByDie = true;
     //public bool AddFireArmRecoil = true;
     public bool AddCameraShake = true;
     [Header("Stats")]
@@ -19,7 +21,7 @@ public class FireArm : MonoBehaviour
     public FireArmStats fireArmStats = new FireArmStats();
 
     [Header("References")]
-    public Camera fpsCamera;
+    public GameObject fpsCamera;
     public Transform BulletSpawnPoint;
     public ParticleSystem muzzleFlash;
     public ParticleSystem bulletFlash;
@@ -43,39 +45,26 @@ public class FireArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CanShoot = false;
+        CanShootNow = false;
         direction = fpsCamera.transform.forward;
+        if (!CanShoot) return;
         // if Player's input && Fire rate allows
         // then Shoot
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if (Input.GetButton("Fire1"))
         {
-            CanShoot = true;
+            CanShootNow = true;
             Debug.Log("FireArm: performed");
         }
         if (Input.GetButtonUp("Fire1"))
         {
             Debug.Log("FireArm: cancel");
-            CanShoot = false;
+            CanShootNow = false;
             AddBulletSpread = false;
         }
-        if (CanShoot)
+        if (CanShootNow)
         {
             // Shoot Mechanic
-            if (fireArmStats.Ammo == 0)
-            {
-                FireArmPrefab.GetComponent<Animator>().Play("Reload", 0);
-                Card temp = GetNewFireArmCard();
-                GetComponent<HUD_Manager>().ChangeFireArmCard(temp);
-                SetFireArmStats(temp.NewFireArmStats);
-                nextTimeToFire = Time.time + 1f / ReloadTime;
-            }
-            else
-            {
-                // Fire Rate Timer
-                nextTimeToFire = Time.time + 1f / fireArmStats.FireRate;
-                fireArmStats.Ammo--;
-                Shoot();
-            }
+            Shoot();
             AddBulletSpread = true;
         }
     }
@@ -133,7 +122,10 @@ public class FireArm : MonoBehaviour
     {
         if (target != null)
         {
-            target.TakeDamage(fireArmStats.BulletDamage);
+            if(target.Stats.Health - target.TakeDamage(fireArmStats.BulletDamage*GetComponent<CharacterStatsManager>().Stats.Strength) <= 1 && GetPointsByDie)
+            {
+                GetComponent<CharacterStatsManager>().AddCardPoints(1);
+            }
         }
 
     }
@@ -154,8 +146,24 @@ public class FireArm : MonoBehaviour
     /// <summary>
     /// Shoot Mechanic
     /// </summary>
-    private void Shoot()
+    public void Shoot()
     {
+        if (Time.time <= nextTimeToFire) return;
+        if (fireArmStats.Ammo == 0)
+        {
+            FireArmPrefab.GetComponent<Animator>().Play("Reload", 0);
+            Card temp = GetNewFireArmCard();
+            GetComponent<HUD_Manager>().ChangeFireArmCard(temp);
+            SetFireArmStats(temp.NewFireArmStats);
+            fireArmStats.MaxAmmo = fireArmStats.Ammo;
+            nextTimeToFire = Time.time + 1f / ReloadTime;
+        }
+        else
+        {
+            // Fire Rate Timer
+            nextTimeToFire = Time.time + 1f / fireArmStats.FireRate;
+            fireArmStats.Ammo--;
+        }
         // Local Vars
         /// void ray that will contain RayCast's Values
         RaycastHit hit;

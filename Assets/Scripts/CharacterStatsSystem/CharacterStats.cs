@@ -121,6 +121,16 @@ public class CharacterStats
         if (RetryPoints <= 0)
             RetryPoints = 0;
     }
+    public void UpdateCardPoints(int value)
+    {
+        // calculate and set new value to Health
+        CardPoints += value;
+        // ensures that it stays within the value ranges
+        if (CardPoints + value >= MaxCardPoints)
+            CardPoints = MaxCardPoints;
+        if (CardPoints + value <= 0)
+            CardPoints = 0;
+    }
     /// <summary>
     /// Update the value of the retryPoints by adding the <paramref name="value"/> parameter to it
     /// <para>This function ensures that the value of <see cref="Strength"/> is kept between the ranges <see langword="0" and/> and <see cref="MaxStrength"/></para>

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1653,6 +1653,7 @@ GameObject:
   - component: {fileID: 177378241}
   - component: {fileID: 177378240}
   - component: {fileID: 177378243}
+  - component: {fileID: 177378244}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1746,6 +1747,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &177378244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177378239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &184504183
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199064164}
   - component: {fileID: 199064163}
+  - component: {fileID: 199064165}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -2163,6 +2198,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &199064165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199064162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &200416920
 GameObject:
   m_ObjectHideFlags: 0
@@ -13538,6 +13593,7 @@ MonoBehaviour:
   createRoomContent: {fileID: 1297067419}
   joinRoomContent: {fileID: 649691687}
   roomPanel: {fileID: 953080233}
+  sceneLoader: {fileID: 195450725}
 --- !u!114 &849426337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13599,7 +13655,7 @@ MonoBehaviour:
       type: 2
       priority: 0
       activeTime: 5
-      refreshTime: 0
+      value: 2
     - image: {fileID: 21300000, guid: d08443f6fd922ee48b024ef190beb077, type: 3}
       newCharacterStats:
         team: 0
@@ -13639,7 +13695,7 @@ MonoBehaviour:
       type: 2
       priority: 0
       activeTime: 15
-      refreshTime: 0
+      value: 2
     - image: {fileID: 21300000, guid: e78ae1cb9ad3afb489ec79455dd61264, type: 3}
       newCharacterStats:
         team: 0
@@ -13679,47 +13735,7 @@ MonoBehaviour:
       type: 2
       priority: 0
       activeTime: 5
-      refreshTime: 0
-    - image: {fileID: 21300000, guid: 87ec517305325ca47b7f48e230687f85, type: 3}
-      newCharacterStats:
-        team: 0
-        RetryPoints: 0
-        MaxRetryPoints: 0
-        CardPoints: 0
-        MaxCardPoints: 0
-        Health: 0
-        MaxHealth: 0
-        Endurance: 0
-        MaxEndurance: 0
-        Strength: 0
-        MaxStrength: 0
-        Size: 0
-        MaxSize: 0
-        MinSize: 0
-        Speed: 5
-        MaxSpeed: 0
-        JumpForce: 0
-        MaxJumpForce: 0
-        MinJumpForce: 0
-        WeakedState: 0
-        InmortalState: 1
-        SearchingState: 0
-        FallBackState: 0
-      newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
-        bounceDistance: 0
-        impactForce: 0
-      type: 3
-      priority: 0
-      activeTime: 10
-      refreshTime: 0
+      value: 2
     - image: {fileID: 21300000, guid: 8385a880d2021d0408bb168add156554, type: 3}
       newCharacterStats:
         team: 0
@@ -13759,7 +13775,7 @@ MonoBehaviour:
       type: 3
       priority: 0
       activeTime: 15
-      refreshTime: 0
+      value: 4
     - image: {fileID: 21300000, guid: 5f5bb6628994b814888f46bbb90ed047, type: 3}
       newCharacterStats:
         team: 0
@@ -13799,7 +13815,47 @@ MonoBehaviour:
       type: 3
       priority: 0
       activeTime: 15
-      refreshTime: 0
+      value: 4
+    - image: {fileID: 21300000, guid: 87ec517305325ca47b7f48e230687f85, type: 3}
+      newCharacterStats:
+        team: 0
+        RetryPoints: 0
+        MaxRetryPoints: 0
+        CardPoints: 0
+        MaxCardPoints: 0
+        Health: 0
+        MaxHealth: 0
+        Endurance: 0
+        MaxEndurance: 0
+        Strength: 0
+        MaxStrength: 0
+        Size: 0
+        MaxSize: 0
+        MinSize: 0
+        Speed: 5
+        MaxSpeed: 0
+        JumpForce: 0
+        MaxJumpForce: 0
+        MinJumpForce: 0
+        WeakedState: 0
+        InmortalState: 1
+        SearchingState: 0
+        FallBackState: 0
+      newFireArmStats:
+        cameraShakeForce: 0
+        fireArmRange: 0
+        fireRate: 0
+        fireSpreadVariance: {x: 0, y: 0, z: 0}
+        shootDelay: 0
+        ammo: 0
+        bulletDamage: 0
+        bulletSpeed: 0
+        bounceDistance: 0
+        impactForce: 0
+      type: 3
+      priority: 0
+      activeTime: 10
+      value: 5
     - image: {fileID: 21300000, guid: 41ab431d994339f4cb5d14c25967195e, type: 3}
       newCharacterStats:
         team: 0
@@ -13827,8 +13883,8 @@ MonoBehaviour:
         FallBackState: 0
       newFireArmStats:
         cameraShakeForce: 0.06
-        fireArmRange: 100
-        fireRate: 15
+        fireArmRange: 50
+        fireRate: 16
         fireSpreadVariance: {x: 0.04, y: 0.1, z: 0.04}
         shootDelay: 0.5
         ammo: 20
@@ -13839,7 +13895,7 @@ MonoBehaviour:
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: 27ed8795e05b35a42a566d1e395d1b68, type: 3}
       newCharacterStats:
         team: 0
@@ -13866,20 +13922,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.09
+        fireArmRange: 100
+        fireRate: 5
+        fireSpreadVariance: {x: 0.02, y: 0.04, z: 0.02}
+        shootDelay: 0.5
+        ammo: 12
+        bulletDamage: 32
+        bulletSpeed: 100
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: e0d5fc21228742943b84cff9b62252ba, type: 3}
       newCharacterStats:
         team: 0
@@ -13906,20 +13962,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.1
+        fireArmRange: 100
+        fireRate: 6
+        fireSpreadVariance: {x: 0.03, y: 0.048, z: 0.02}
+        shootDelay: 0.5
+        ammo: 13
+        bulletDamage: 39
+        bulletSpeed: 100
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: 2c2bd749ea28e1449942e93a21c08ead, type: 3}
       newCharacterStats:
         team: 0
@@ -13946,20 +14002,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.13
+        fireArmRange: 100
+        fireRate: 4
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.02}
+        shootDelay: 0.5
+        ammo: 13
+        bulletDamage: 59
+        bulletSpeed: 100
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: 6a3896ab18ab9da43a6ee572d33fc804, type: 3}
       newCharacterStats:
         team: 0
@@ -13986,20 +14042,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.08
+        fireArmRange: 100
+        fireRate: 14
+        fireSpreadVariance: {x: 0.08, y: 0.08, z: 0.08}
+        shootDelay: 0.5
+        ammo: 30
+        bulletDamage: 25
+        bulletSpeed: 100
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: 8f70cfbfd9465a646936eeaebc6f62cb, type: 3}
       newCharacterStats:
         team: 0
@@ -14026,20 +14082,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.13
+        fireArmRange: 50
+        fireRate: 19
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 30
+        bulletDamage: 28
+        bulletSpeed: 280
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: c65523d68cb1bb84196b170cf8781a9d, type: 3}
       newCharacterStats:
         team: 0
@@ -14066,20 +14122,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.1
+        fireArmRange: 100
+        fireRate: 10
+        fireSpreadVariance: {x: 0.05, y: 0.05, z: 0.05}
+        shootDelay: 0.5
+        ammo: 30
+        bulletDamage: 25
+        bulletSpeed: 280
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: f5946b93b2ec46847a3e73283b96d434, type: 3}
       newCharacterStats:
         team: 0
@@ -14106,20 +14162,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.15
+        fireArmRange: 100
+        fireRate: 11
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 35
+        bulletDamage: 27
+        bulletSpeed: 100
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: 7d41e5df6c002864ea99372afea84d13, type: 3}
       newCharacterStats:
         team: 0
@@ -14146,20 +14202,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.11
+        fireArmRange: 302
+        fireRate: 50
+        fireSpreadVariance: {x: 0.09, y: 0.09, z: 0.09}
+        shootDelay: 0.5
+        ammo: 30
+        bulletDamage: 35
+        bulletSpeed: 100
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: 29adab294c3658146ab2d0dca7e86622, type: 3}
       newCharacterStats:
         team: 0
@@ -14186,20 +14242,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.15
+        fireArmRange: 100
+        fireRate: 1
+        fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
+        shootDelay: 0.5
+        ammo: 10
+        bulletDamage: 74
+        bulletSpeed: 280
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: 1f85d5a6ebb312f4eaf192d3ea228570, type: 3}
       newCharacterStats:
         team: 0
@@ -14226,20 +14282,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.15
+        fireArmRange: 100
+        fireRate: 0.8
+        fireSpreadVariance: {x: 0.01, y: 0.01, z: 0.01}
+        shootDelay: 0.5
+        ammo: 10
+        bulletDamage: 114
+        bulletSpeed: 280
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
     - image: {fileID: 21300000, guid: a618e67fd5d8d3d47b93eae07112dff9, type: 3}
       newCharacterStats:
         team: 0
@@ -14266,20 +14322,20 @@ MonoBehaviour:
         SearchingState: 0
         FallBackState: 0
       newFireArmStats:
-        cameraShakeForce: 0
-        fireArmRange: 0
-        fireRate: 0
-        fireSpreadVariance: {x: 0, y: 0, z: 0}
-        shootDelay: 0
-        ammo: 0
-        bulletDamage: 0
-        bulletSpeed: 0
+        cameraShakeForce: 0.15
+        fireArmRange: 100
+        fireRate: 50
+        fireSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+        shootDelay: 0.5
+        ammo: 200
+        bulletDamage: 57
+        bulletSpeed: 100
         bounceDistance: 0
-        impactForce: 0
+        impactForce: 25
       type: 1
       priority: 0
       activeTime: 0
-      refreshTime: 0
+      value: 0
   cardsPrefabList: []
 --- !u!1 &869878837
 GameObject:
@@ -16662,9 +16718,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 195450725}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 849426336}
+        m_TargetAssemblyTypeName: PanelsManager, Assembly-CSharp
+        m_MethodName: OnClickLoadTrainLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

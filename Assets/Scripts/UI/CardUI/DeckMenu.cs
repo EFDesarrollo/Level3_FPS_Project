@@ -17,6 +17,7 @@ public class DeckMenu : MonoBehaviour
     private void Awake()
     {
         Debug.Log("DeckMenu: Player deck reference: "+ GameObject.FindGameObjectsWithTag("GameController").Length);
+        GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameManager>().Deck = new Deck();
         playerDeck = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameManager>().Deck;
     }
     // Start is called before the first frame update
